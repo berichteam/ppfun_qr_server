@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import send_from_directory                                                                                                 
+from flask import request, send_from_directory                                                                                                 
 from flask import Flask                                                                                                                                
 from flask import Response                                                                                                                             
 import flask                                                                                                                                           
@@ -7,7 +7,6 @@ import json
 import logging                                                                                                                                         
 import sys                                                                                                                                             
 import os                                                                                                                                              
-import requests                                                                                                                                        
 from MyQR import myqr                                                                                                                                                   
 import random  
 
