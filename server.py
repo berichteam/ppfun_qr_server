@@ -1,21 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import request, Blueprint, redirect, url_for                                                                                                
-from flask import render_template, send_from_directory                                                                                                 
+from flask import send_from_directory                                                                                                 
 from flask import Flask                                                                                                                                
 from flask import Response                                                                                                                             
-from flask import g                                                                                                                                    
 import flask                                                                                                                                           
-from functools import wraps                                                                                                                            
-import flask                                                                                                                                           
-import random                                                                                                                                          
-import md5                                                                                                                                             
 import json                                                                                                                                            
 import logging                                                                                                                                         
 import sys                                                                                                                                             
 import os                                                                                                                                              
-import redis                                                                                                                                           
-import base64                                                                                                                                          
-import requests                                                                                                                                        
 from MyQR import myqr                                                                                                                                                   
 import random  
 
