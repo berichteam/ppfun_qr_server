@@ -1,0 +1,6 @@
+*~
+.idea
+*.pyc
+.DS_Store
+node_modules
+./static/*
