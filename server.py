@@ -40,49 +40,32 @@ def make_response(status_code, data = None):
     return res
 
 
-@app.route("/qrcode/gen", methods=["POST"])
-def gen_qrcode():
-    if not request.data:
-        return INVALID_PARAM()
-
-    obj = json.loads(request.data)
-    content_type = obj["type"]
-    content_hash = obj["hash"]
-
-    sava_directory = str(output_dir + content_type)
-    save_name = str(content_hash + ".png")
-
-    if not os.path.exists(sava_directory):
-        os.makedirs(sava_directory)
-
-
-    if os.path.exists(sava_directory + '/' + save_name):
-        return make_response(200, {"url": ppfun_url + "qrcode/article/" + save_name})
-
-    words = str(ppfun_url + content_type + "?" + "hash=" + content_hash)
-
-    imagelist = os.listdir(assets_dir)
-
-    picture = str(assets_dir + random.sample(imagelist, 1)[0])
-
-    version, level, qr_name = myqr.run(
-        words=words,
-        version=1,
-        level='H',
-        picture=picture,
-        colorized=True,
-        contrast=1.0,
-        brightness=1.0,
-        save_name=save_name,
-        save_dir=sava_directory
-    )
-
-    return make_response(200, {"url": ppfun_url + "qrcode/article/" + save_name})
-
 @app.route("/qrcode/<type>/<image_name>", methods=["GET"])
 def getQrcode(type, image_name):
     if not type or not image_name:
         return INVALID_PARAM()
+
+    sava_directory = str(output_dir + type)
+    save_name = str(image_name)
+
+    if not os.path.exists(sava_directory):
+        os.makedirs(sava_directory)
+
+    if not os.path.exists(sava_directory + '/' + save_name):
+        words = str(ppfun_url + type + "?" + "hash=" + image_name[:-4])
+        imagelist = os.listdir(assets_dir)
+        picture = str(assets_dir + random.sample(imagelist, 1)[0])
+        version, level, qr_name = myqr.run(
+            words=words,
+            version=1,
+            level='H',
+            picture=picture,
+            colorized=True,
+            contrast=1.0,
+            brightness=1.0,
+            save_name=save_name,
+            save_dir=sava_directory
+        )
 
     return send_from_directory(output_dir + type + "/", image_name, mimetype='image/vnd.microsoft.icon')
 
