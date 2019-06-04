@@ -7,6 +7,7 @@ import json
 import logging                                                                                                                                         
 import sys                                                                                                                                             
 import os                                                                                                                                              
+import requests                                                                                                                                        
 from MyQR import myqr                                                                                                                                                   
 import random  
 
