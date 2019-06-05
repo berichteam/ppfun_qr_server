@@ -13,7 +13,7 @@ import random
 app = Flask(__name__)                                                                                                                                   
 app.debug = True                                                                                                                         
 
-ppfun_url = "https://www.ppfun.fun/"
+ppfun_url = "https://ppfun.fun/"
 assets_dir = app.root_path + "/assets/"
 output_dir = app.root_path + "/static/"
 
